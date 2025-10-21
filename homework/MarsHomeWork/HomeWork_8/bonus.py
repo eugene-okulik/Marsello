@@ -3,7 +3,6 @@ import random
 salary = int(input('Введите свою зарплату т.р. '))
 bonus = [True, False]
 
-
 if random.choice(bonus) == True:
     bonuses = random.randrange(10, 31)
     count = salary // 100 * bonuses + salary
