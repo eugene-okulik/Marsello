@@ -5,6 +5,8 @@ temperatures = [20, 15, 32, 34, 21, 19, 25, 27, 30, 32, 34, 30, 29, 25,
 
 hot_day = filter(lambda x: x > 28, temperatures)
 hot_day = list(hot_day)
+average = sum(hot_day) / len(hot_day)
 
 print(min(hot_day))
 print(max(hot_day))
+print(round(average, 2))
