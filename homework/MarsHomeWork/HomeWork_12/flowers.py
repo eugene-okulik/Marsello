@@ -57,7 +57,7 @@ class Bouquet:
         for key, value in kwargs.items():
             result = [flower for flower in result if getattr(flower, key) == value]
         return result
-    
+
     def __repr__(self):
         return f"Bouquet({self.flowers})"
 
