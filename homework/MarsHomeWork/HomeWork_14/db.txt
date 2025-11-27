@@ -1,0 +1,39 @@
+INSERT INto students (name, second_name, group_id) values ('Chuck', 'Norris', NULL)
+
+INSERT INto books (title, taken_by_student_id) values ('Kapate', '21766')
+
+INSERT INto books (title, taken_by_student_id) values ('Вышивание для чайников', '21766')
+
+INSERT INto groups  (title, start_date, end_date) values ('Клуб Винкс', 'nov 2025', 'never')
+
+UPDATE students set group_id = 21588 where id = 21766
+
+INSERT INto subjects (title) values ('Плетение из биссера')
+
+INSERT INto subjects (title) values ('Как захватить мир в домашних условиях')
+
+INSERT INto lessons  (title, subject_id) values ('lesson_1', 13059)
+
+INSERT INto lessons  (title, subject_id) values ('lesson_2', 13059)
+
+INSERT INto lessons  (title, subject_id) values ('lesson_1', 13060)
+
+INSERT INto lessons  (title, subject_id) values ('lesson_2', 13060)
+
+INSERT INto marks (value, lesson_id, student_id) values (777, 73530, 21766)
+
+INSERT INto marks (value, lesson_id, student_id) values (3, 73531, 21766)
+
+INSERT INto marks (value, lesson_id, student_id) values (12, 73528, 21766)
+
+INSERT INto marks (value, lesson_id, student_id) values (2, 73529, 21766)
+
+SELECT * FROM marks where student_id = 21766
+
+SELECT * FROM students s
+LEFT JOIN `groups` g ON s.group_id = g.id
+LEFT JOIN books b ON b.taken_by_student_id = s.id
+LEFT JOIN marks m ON m.student_id = s.id
+LEFT JOIN lessons l ON l.id = m.lesson_id
+LEFT JOIN subjects subj ON subj.id = l.subject_id
+WHERE s.id = 21766
