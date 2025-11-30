@@ -24,14 +24,11 @@ shrek_id = cursor.lastrowid
 
 # Добавляем ему книг
 query = 'INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)'
-values = ('Kapate', shrek_id)
-cursor.execute(query, values)
-book_id_1 = cursor.lastrowid
-
-query = 'INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)'
-values = ('Как тусрваться на болоте с ослом', shrek_id)
-cursor.execute(query, values)
-book_id_2 = cursor.lastrowid
+values = [
+    ('Kapate', shrek_id),
+    ('Как тусоваться на болоте с ослом', shrek_id)
+]
+cursor.executemany(query, values)
 
 # Создаем группу
 query = "INSERT INTO groups (title, start_date, end_date) VALUES (%s, %s, %s)"
@@ -48,54 +45,43 @@ cursor.execute(query, values)
 query = 'INSERT INTO subjects (title) VALUES (%s)'
 values = ('Плетение из биссера',)
 cursor.execute(query, values)
-subjects_1 = cursor.lastrowid
+subjects_1_id = cursor.lastrowid
 
 query = 'INSERT INTO subjects (title) VALUES (%s)'
-values = ('Как захватить мир лежа на деване',)
+values = ('Как захватить мир лежа на диване',)
 cursor.execute(query, values)
-subjects_2 = cursor.lastrowid
+subjects_2_id = cursor.lastrowid
 
 # Создаем уроки по предметам
 query = 'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)'
-values = ('lesson_1', subjects_1)
+values = ('lesson_1', subjects_1_id)
 cursor.execute(query, values)
 sub_1_lesson_id_1 = cursor.lastrowid
 
 query = 'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)'
-values = ('lesson_2', subjects_1)
+values = ('lesson_2', subjects_1_id)
 cursor.execute(query, values)
 sub_1_lesson_id_2 = cursor.lastrowid
 
 query = 'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)'
-values = ('lesson_1', subjects_2)
+values = ('lesson_1', subjects_2_id)
 cursor.execute(query, values)
 sub_2_lesson_id_1 = cursor.lastrowid
 
 query = 'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)'
-values = ('lesson_2', subjects_2)
+values = ('lesson_2', subjects_2_id)
 cursor.execute(query, values)
 sub_2_lesson_id_2 = cursor.lastrowid
 
 # Проставляем оценки по предметам
 query = 'INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)'
-values = (5, sub_1_lesson_id_1, shrek_id)
-cursor.execute(query, values)
-mark_1 = cursor.lastrowid
-
-query = 'INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)'
-values = (10, sub_1_lesson_id_2, shrek_id)
-cursor.execute(query, values)
-mark_2 = cursor.lastrowid
-
-query = 'INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)'
-values = (15, sub_2_lesson_id_1, shrek_id)
-cursor.execute(query, values)
-mark_3 = cursor.lastrowid
-
-query = 'INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)'
-values = (90, sub_2_lesson_id_2, shrek_id)
-cursor.execute(query, values)
-mark_4 = cursor.lastrowid
+values = [
+    (5, sub_1_lesson_id_1, shrek_id),
+    (10, sub_1_lesson_id_2, shrek_id),
+    (15, sub_2_lesson_id_1, shrek_id),
+    (90, sub_2_lesson_id_2, shrek_id)
+]
+cursor.executemany(query, values)
 
 # Выводим оценки по предметам
 query = 'SELECT * FROM marks where student_id = %s'
@@ -111,7 +97,7 @@ cursor.execute(query, values)
 books_in_student = cursor.fetchall()
 print(books_in_student)
 
-# Выводим всю информацию что связана с учеником
+# Выводим всю информацию, что связана с учеником
 query = '''
 SELECT * FROM students s
 LEFT JOIN groups g ON s.group_id = g.id
