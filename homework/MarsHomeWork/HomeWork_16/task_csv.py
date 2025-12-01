@@ -39,7 +39,7 @@ with open(data_file_path, newline='', encoding='utf-8') as csv_file:
         JOIN marks m ON m.student_id = s.id
         JOIN lessons l ON l.id = m.lesson_id
         JOIN subjects subj ON subj.id = l.subject_id
-        WHERE s.name = %s 
+        WHERE s.name = %s
         AND s.second_name = %s
         AND g.title = %s
         AND b.title = %s
