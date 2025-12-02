@@ -1,4 +1,6 @@
-import argparse, os, re
+import argparse
+import  os
+import  re
 
 parser = argparse.ArgumentParser()
 parser.add_argument('path', help='Папка или файл')
