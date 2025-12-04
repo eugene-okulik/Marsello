@@ -36,8 +36,8 @@ def put_object():
     headers = {'Content-Type': 'application/json'}
 
     response = requests.put(
-        f'http://objapi.course.qa-practice.com/object/{new_object_id}'
-        , json=body,
+        f'http://objapi.course.qa-practice.com/object/{new_object_id}',
+        json=body,
         headers=headers
     )
     assert response.status_code == 200, 'Status code is incorrect!'
@@ -57,8 +57,8 @@ def patch_object():
     headers = {'Content-Type': 'application/json'}
 
     response = requests.patch(
-        f'http://objapi.course.qa-practice.com/object/{new_object_id}'
-        , json=body,
+        f'http://objapi.course.qa-practice.com/object/{new_object_id}',
+        json=body,
         headers=headers
     )
     assert response.status_code == 200, 'Status code is incorrect!'
