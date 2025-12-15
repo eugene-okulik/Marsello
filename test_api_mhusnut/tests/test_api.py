@@ -1,4 +1,3 @@
-import requests
 import pytest
 import allure
 
@@ -34,7 +33,7 @@ def test_post_a_post(create_post_endpoint, data):
 @allure.story('Manipulate puts')
 @allure.title('Изменяем человечка')
 @pytest.mark.medium
-def test_put_object(update_post_endpoint, post_id):
+def test_put_object(update_post_endpoint, man_id):
     payload = {
         "name": "Марселло",
         "data": {
@@ -42,14 +41,14 @@ def test_put_object(update_post_endpoint, post_id):
             "place of residence": "РФ"
         }
     }
-    update_post_endpoint.test_put_object(post_id, payload)
+    update_post_endpoint.test_put_object(man_id, payload)
     update_post_endpoint.check_status_code()
 
 
 @allure.feature('Patchs')
 @allure.story('Manipulate patch')
 @allure.title('Изменяем человечку года')
-def test_patch_object(update_post_endpoint, post_id):
+def test_patch_object(update_post_endpoint, man_id):
     with allure.step('Вводим параметры человечка'):
         payload = {
             "data": {
@@ -57,14 +56,14 @@ def test_patch_object(update_post_endpoint, post_id):
             }
         }
 
-    update_post_endpoint.test_patch_object(post_id, payload)
+    update_post_endpoint.test_patch_object(man_id, payload)
     update_post_endpoint.check_status_code()
 
 
 @allure.feature('Deletes')
 @allure.story('Manipulate delete')
 @allure.title('Удаляем человечка')
-def test_delete_object(delete_post_endpoint, post_id):
+def test_delete_object(delete_post_endpoint, man_id):
     with allure.step('Выполняем запрос с конкретным id человечка'):
-        delete_post_endpoint.delete_object(post_id)
+        delete_post_endpoint.delete_object(man_id)
         delete_post_endpoint.check_status_code()

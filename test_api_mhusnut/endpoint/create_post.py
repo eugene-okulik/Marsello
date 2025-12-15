@@ -9,5 +9,5 @@ class MethodPost(BaseEndpoint):
             self.response = requests.post(f'{self.url}', json=payload, headers=self.headers)
 
             self.json = self.response.json()
-            self.post_id = self.json['id']
+            self.man_id = self.json['id']
             return self.response
