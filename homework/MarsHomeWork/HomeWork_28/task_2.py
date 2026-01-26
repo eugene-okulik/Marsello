@@ -42,4 +42,3 @@ def test_input_text(page: Page):
 
     submit_button = page.get_by_text('Submit')
     submit_button.click()
-    sleep(10)
