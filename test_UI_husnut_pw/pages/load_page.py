@@ -12,6 +12,5 @@ class Load(MainPage):
         self.finish = self.page.locator('#finish')
         expect(self.finish).to_be_visible(timeout=6000)
 
-    def check_final_text(self):
-        checked_text = 'Hello World!'
+    def check_final_text(self, checked_text):
         expect(self.finish).to_have_text(checked_text)

@@ -7,12 +7,12 @@ class QaPracticeLanguageSelection(MainPage):
     language_name = None
     language = None
 
-    def language_selection(self):
+    def language_selection(self, selected_language):
         drop_down = self.page.locator('[name="choose_language"]')
         drop_down.click()
 
         self.language = self.page.locator('select[name="choose_language"]')
-        self.language.select_option(value="1")
+        self.language.select_option(selected_language)
         self.language_name = self.language.inner_text()
 
         button = self.page.locator('[class="btn btn-primary"]')
